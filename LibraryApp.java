@@ -1,12 +1,15 @@
 import java.util.*;
 
+
 class Book {
-    private String Id;
+    // Requied fields in library management system
+    private final String Id;
     private String Title;
     private String Author;
-    private String Genre;
+    private final String Genre;
     private String status;
 
+    // constructor of book information
     public Book(String Id, String Title, String Author, String Genre, String status) {
         this.Id = Id;
         this.Title = Title;
@@ -15,6 +18,7 @@ class Book {
         this.status = status;
     }
 
+    // getters and setters
     public String getId() { return Id; }
     public String getTitle() { return Title; }
     public void setTitle(String Title) { this.Title = Title; }
@@ -32,7 +36,7 @@ class Book {
 }
 
 class LibraryManagementSystem {
-    private List<Book> books;
+    private final List<Book> books;
 
     public LibraryManagementSystem() {
         books = new ArrayList<>();
@@ -122,7 +126,7 @@ public class LibraryApp {
             scanner.nextLine();
 
             switch (choice) {
-                case 1:
+                case 1 -> {
                     System.out.print("Enter Book ID: ");
                     String Id = scanner.nextLine();
                     System.out.print("Enter Title: ");
@@ -134,19 +138,17 @@ public class LibraryApp {
                     System.out.print("Enter Availability Status (Available/Checked Out): ");
                     String status = scanner.nextLine();
                     library.addBook(Id, Title, Author, Genre, status);
-                    break;
+                }
 
-                case 2:
-                    library.viewAllBooks();
-                    break;
+                case 2 -> library.viewAllBooks();
 
-                case 3:
+                case 3 -> {
                     System.out.print("Enter Book ID or Title to search: ");
                     String searchQuery = scanner.nextLine();
                     library.searchBook(searchQuery);
-                    break;
+                }
 
-                case 4:
+                case 4 -> {
                     System.out.print("Enter Book ID to update: ");
                     String updateId = scanner.nextLine();
                     System.out.print("Enter new Title (or leave blank): ");
@@ -156,22 +158,22 @@ public class LibraryApp {
                     System.out.print("Enter new Availability Status (Available/Checked Out, or leave blank): ");
                     String newStatus = scanner.nextLine();
                     library.updateBook(updateId, newTitle, newAuthor, newStatus);
-                    break;
+                }
 
-                case 5:
+                case 5 -> {
                     System.out.print("Enter Book ID to delete: ");
                     String deleteId = scanner.nextLine();
                     library.deleteBook(deleteId);
                     System.out.println("Deleted the book succesfully.");
-                    break;
+                }
 
-                case 6:
-                    library.exitSystem();
-                    break;
+                case 6 -> library.exitSystem();
 
-                default:
-                System.out.println("Invalid option. Please try again.");
+                default -> System.out.println("Invalid option. Please try again.");
             }
+           
         }
+        
     }
+    
 }
